@@ -1,0 +1,18 @@
+{
+  "name": "node-snippets",
+  "version": "1.0.0",
+  "description": "Includes various code snippets for Express and React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Node",
+    "React"
+  ],
+  "author": "PurpleUltralisk",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
