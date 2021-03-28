@@ -59,6 +59,7 @@ app.list(port, [host], [backlog], [callback])
 ```
 This function binds and listens for connections on specified host and port. 
 | Parameter | Description |
+| --- | --- |
 |port | port number to accept incoming requests |
 |host | name of the domain |
 |backlog | max number of queued pending connections, default is 511 |
