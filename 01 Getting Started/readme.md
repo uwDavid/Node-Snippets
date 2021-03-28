@@ -37,11 +37,12 @@ To start the server we type:
 ```
 $ node index.js
 ```
-Then we can visit localhost://3000 to see that our server is now working. 
+Then we can visit localhost:3000 to see that our server is now working. 
+To stop the server, press Ctrl+C. 
 
 ## Express Methods
 ```javascript
-app.get(route, callback)
+app.get(route, callback(req, res))
 ```
 When a GET request at the given route is called invoke the callback function. 
 Call back function has 2 parameters req (request) and res (response). 
@@ -57,7 +58,8 @@ This function takes an object as input and send this to the client.
 app.list(port, [host], [backlog], [callback])
 ```
 This function binds and listens for connections on specified host and port. 
-port = port number to accept incoming requests
-host = name of the domain
-backlog = max number of queued pending connections, default is 511
-callback = callback function for when server starts listening
+| Parameter | Description |
+|port | port number to accept incoming requests |
+|host | name of the domain |
+|backlog | max number of queued pending connections, default is 511 |
+|callback | callback function for when server starts listening |
