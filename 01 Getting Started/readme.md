@@ -7,7 +7,7 @@ Check to see if you have node installed by typing:
 $ node -v
 ```
 
-# To start an Web App
+## To start an Web App
 Step 1: Initiate npm project, it creates a package.json file in the application 
 ```
 $ npm init
@@ -21,7 +21,7 @@ Step 3: Install nodemon, it is a tool that restarts our server as soon as we mak
 $ npm install nodemon -g
 ```
 
-# Basic file structure
+## Basic file structure
 In our app entry point index.js this will be our template.
 ```javascript
 var express = require('express');
@@ -39,7 +39,7 @@ $ node index.js
 ```
 Then we can visit localhost://3000 to see that our server is now working. 
 
-# Express Methods
+## Express Methods
 ```javascript
 app.get(route, callback)
 ```

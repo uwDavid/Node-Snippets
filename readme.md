@@ -1,5 +1,5 @@
 # NodeJS Snippets
-The goal of this repository is to provide quick succinct examples in Node, Express, and React in the form of code snippets. 
+The goal of this repository is to provide quick succinct examples in `Node`, `Express`, and `React` in the form of code snippets. 
 Users can the quickly browse to the code snippet to understand what's needed for their webserver. 
 
 To do: 
