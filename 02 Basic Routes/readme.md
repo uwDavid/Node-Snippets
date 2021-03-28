@@ -6,5 +6,7 @@ This is a very simple demo to have 3 different routes:
 3. '/dogs' - responding with "Puppies!"
 4. '*' - a wildcard route, for all other routes
 
->It is important to note that we can only send one response back to the client using res.send()
+**Important Note**
+> We can only send one response back to the client using res.send()
+**Important Note**
 >Order of route responses also matters because we can only send one response back. In this case, we need to put the wildcard route at the very bottom.
