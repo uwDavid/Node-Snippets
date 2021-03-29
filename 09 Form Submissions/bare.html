@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="/home.css"> 
+</head>
+
+<body>
+    <h1>Trying out GET/POST</h1>
+    <h2>GET Request</h2>
+    <form action="http://localhost:8080/data" method="get">
+        <input type="text" name="material">
+        <input type="number" name="qty">
+        <button>Submit</button>
+    </form>
+    <h2>POST Request</h2>
+    <form action="http://localhost:8080/data" method="post">
+        <input type="text" name="material">
+        <input type="number" name="qty">
+        <button>Submit</button>
+    </form>
+</body>
+</html>
