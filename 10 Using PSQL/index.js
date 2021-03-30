@@ -1,9 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-const pgp = require('pg-promise'); 
-const bodyParser = require('body-parser');
-const {pool} = require('./config');
+const pgp = require('pg-promise')(); //Note the options ()
 
 // Setting Express 
 app.set('view engine', 'ejs');
@@ -11,29 +9,32 @@ app.set('views', path.join(__dirname,'/views'));
 // app.use(express.static('public'));
 // app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.json);
+app.use(express.json());
 
-// Testing connection
-console.log(pool.options.user); 
-/*
-const getPerson = (req, res)=>{
-    pool.query('SELECT * FROM person LIMIT 3', (err, results)=>{
-        if(err){
-            throw err;
+// Setting up Database Connection
+const connectionString = 
+    "postgresql://tester:password@localhost:5432/test"; 
+const db = pgp(connectionString); 
+
+app.get('/people', (req, res)=>{
+    db.any("SELECT first_name FROM person LIMIT 3;")
+    .then(
+        rows => {
+            console.log(rows); 
+            res.json(rows);
         }
-        console.log(results);
-        response.status(200).json(results.rows);
+    )
+    .catch(error=>{
+        console.log(error);
     })
-}
+}); 
 
-app.get('/person', getPerson); 
-*/
 app.get('/', (req, res)=>{
-    res.send("Home");
+    res.send("Home Page");
 });
 
 app.get('*', (req, res)=>{
     res.send("Any other routes here!");
 });
 
-app.listen(8080, ()=> console.log("Listing on PORT:8080..."));
+app.listen(8080, ()=> console.log("Listening on PORT:8080..."));
