@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"> 
+
+<head>
+    <meta charset="UTF-8">
+    <title>People's Page</title>
+</head>
+
+<body>
+    <h1>Index Page</h1>
+    <div>
+        <a href="/people/new">Add new person</a>
+    </div>
+    
+    <h2>Here's a list of all <%= rows.length %> people</h2>
+    <ul>
+        <% for (let person of rows) { %>
+        <li><a href="/people/<%= person.id %>">ID <%= person.id %> - <%= person.first_name %> <%= person.last_name %> from <%= person.country_of_birth %></a> 
+        </li>
+        <% } %>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show</title>
+</head>
+
+<body>
+    <a href="/people">Back to List of all people</a>
+    
+    <h1><%= row.first_name %> <%= row.last_name %></h1>
+    <div>Gender: <%= row.gender %></div>
+    <div>Date of Birth: <%= row.date_of_birth %></div>
+    <div>Country: <%= row.country_of_birth %></div>
+    <div>e-mail: <%= row.email %></div>
+    <p> 
+        <a href="/people/<%= row.id %>/edit">Edit Info</a>
+    </p>
+    <p>
+    <form action="/people/<%=row.id %>?_method=DELETE" method="POST">
+        <button>Delete Info</button>
+    </form>
+    </p>
+    
+</body>
+
+</html>

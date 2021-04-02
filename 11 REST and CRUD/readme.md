@@ -87,13 +87,29 @@ app.post('/people', (req,res)=>{
     });
 }); 
 ```
-### UPDATE
+### UPDATE and DELETE
+HTML forms can only send GET and POST requests. 
+In order to send PUT or DELETE requests, we need to use `method override` module. 
+```
+npm i method-override
+```
+```javascript
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+```
+
 | Database Operation | Path Name | Path | HTTP Verb | Description | 
 | --- | --- | --- | --- | --- |
 | UPDATE | Update | /comments/:id | PATCH | Update one specific comment |
 
-### DELETE
+
 | Database Operation | Path Name | Path | HTTP Verb | Description | 
 | --- | --- | --- | --- | --- |
 | READ | Index | /people | GET | Display all people |
 | READ | Show | /people/:id | GET | Display one specific person|
+
+SQL Queries: 
+```sql
+UPDATE table_name SET param1=value1, param2=value2, ... WHERE param3=valu3; 
+DELETE FROM table_name WHERE param1=value1;
+```
