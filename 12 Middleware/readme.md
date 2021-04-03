@@ -15,6 +15,7 @@ app.use((req, res, next)=>{
 Now ever request to the server will print "This is a middleware" on our console. 
 Note that we have to call `next()`, otherwise, the app will be stuck. 
 
+### Defining Middleware for Specific Routes
 We can also specify a route path for our middleware: 
 ```javascript
 app.use('/user/:id', function (req, res, next) {
@@ -22,3 +23,5 @@ app.use('/user/:id', function (req, res, next) {
   next()
 })
 ```
+### Multiple Callbacks
+We can actually pass in multiple callbacks in `app.get()`, `app.use()`, and `app.post` etc.
