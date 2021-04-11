@@ -57,7 +57,19 @@ db.exampleCollection.updateOne(
 | DELETE | db.collection_name.deleteOne(<filter>) | Show one records in collection | 
 | DELETE | db.collection_name.deleteMany(<filter>) | Show all matching records in collection  | 
 
-### Other Operators 
+### Other Operators / Additional Search Logic
+For more information go to official docs [here](https://docs.mongodb.com/manual/reference/operator/query/gt/). Here are some common operators. 
+
 To access nested properties: 
 ```
 db.exampleCollection.find({'personality.likeIceCream': true})
+```
+
+Comparison Operators 
+| Mongo Operator | Description | Example |
+| --- | --- | --- | 
+| $gt | Greater than | db.inventory.find( {qty: { $gt: 20}}) |
+| $gte | >= | |
+| $in | Used to query multiple values for 1 field | db.inventory.find({ qty: { $in: [4, 15]}}) | 
+| $or | OR conditional | db.inventory.find( {$or: [{'name': orange}, {qty: {$gte: 5}} ]}) |
+
