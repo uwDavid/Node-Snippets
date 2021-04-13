@@ -36,7 +36,12 @@ Now we have to define a schema for our data model. There are 2 steps:
 // Define schema
 const exampleSchema = new mongoose.Schema({
     title: String, 
-    year: Number
+    year: Number, 
+    qty: {
+        type: Number, 
+        default: 0, 
+        required: true
+    } // Look to schema options 
 });
 
 // Compile schema
@@ -123,3 +128,4 @@ To return the movie that was deleted
 ```mongo
 Movie.findOneAndDelete({title:'Alien'}).then(m=>console.log(m))
 ```
+
