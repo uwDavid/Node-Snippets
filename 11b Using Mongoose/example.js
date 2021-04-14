@@ -28,7 +28,7 @@ const titanic = new Movie({
 })
 titanic.save().then(res => console.log(res))
 .catch(err => console.log(err))
-/*
+
 // More Schema options
 const productSchema = new mongoose.Schema({
     name: {
@@ -36,7 +36,8 @@ const productSchema = new mongoose.Schema({
         requried: true
     }, 
     price: {
-        type: Number
+        type: Number,
+        min: 0
     }, 
     qty: {
         online: {
@@ -62,4 +63,9 @@ bike.save() // save to data base
 .catch( err => {
     console.log(err)
 }); 
-*/
+
+// Updating the object
+Movie.findOneAndUpdate({title: 'titanic'}, {title: 'Teen Titans', score:8.0}, {new: true, runValidators: true})
+.then( data => console.log(data))
+.catch( err => console.log(err))
+
