@@ -40,3 +40,7 @@ If we did it the other way around, we will get an error because there's no id = 
 ```
 
 But we can improve upon this further by putting it all together by passing all possible categories in for-loop.
+
+5. Choosing between `/categories/:category` and `/products?category=dairy`
+   The latter works better in our example because this is similar to saying we want to perform a query/filter function on all products.
+   Whereas the former escalates `categories` to be a object.

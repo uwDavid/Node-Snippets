@@ -23,8 +23,14 @@ const categories = ['fruit', 'vegetable', 'dairy'];
 
 // This is a common async/await pattern
 app.get('/products', async (req, res)=>{
-    const products = await Product.find({});
-    res.render('products/index', {products});
+    const {category} = req.query;
+    if(category){
+        const products = await Product.find({category: category});
+        res.render('products/index', {products, category});
+    } else {
+        const products = await Product.find({});
+        res.render('products/index', {products, category:'All'});
+    }
 })
 
 app.get('/products/new', (req, res) => {
@@ -58,6 +64,11 @@ app.post('/products', async (req, res) => {
     res.redirect(`/products/${newProd._id}`);
 })
 
+app.delete('/products/:id', async(req,res)=>{
+    const {id} = req.params;
+    const deletedProd = await Product.findByIdAndDelete(id);
+    res.redirect('/products');
+})
 app.listen(3000, ()=>{
     console.log("App started on PORT 3000");
 })
