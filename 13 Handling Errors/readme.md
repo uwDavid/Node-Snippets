@@ -112,3 +112,89 @@ app.get("/products/:id", async (req, res, next) => {
   res.render("products/show", { product });
 });
 ```
+
+We can also use a try-catch pattern:
+
+```javascript
+app.get("/products/:id", async (req, res, next) => {
+  const { id } = req.params;
+  try {
+    const product = await Product.findById(id);
+    // Product.findOne({_id:id});
+    if (!product) {
+      next(throw new AppError("Product not found", 404));
+    }
+    res.render("products/show", { product });
+  } catch (e) {
+    next(e);
+  }
+});
+```
+
+## Wrapping the try-catch
+
+We can also define a function to do this try-catch to save copy-pasting:
+
+```javascript
+function wrapAsync(fn) {
+  return function (req, res, next) {
+    fn(req, res, next).catch((e) => next(e));
+  };
+}
+app.get(
+  "/products/:id",
+  wrapAsync(async (req, res, next) => {
+    const { id } = req.params;
+    try {
+      const product = await Product.findById(id);
+      // Product.findOne({_id:id});
+      if (!product) {
+        next(throw new AppError("Product not found", 404));
+      }
+      res.render("products/show", { product });
+    } catch (e) {
+      next(e);
+    }
+  })
+);
+```
+
+Basically, we enclose our `(req,res,next)` function in an automatic `.catch()` function.
+
+## Mongoose Errors
+
+Every Mongoose has a name to help us differentiate between the errors.
+We can try using a middleware to log our error names:
+
+```javascript
+app.use((err, req, res, next) => {
+  console.log(err.name);
+  next(err);
+});
+```
+
+Then we can have a custom handler for each error:
+
+```javascript
+const handleValidationError = (err) => {
+  console.dir(err);
+  return new AppError(`Validation error message .. ${err.message}`, 400);
+};
+
+app.use((err, req, res, next) => {
+  console.log(err.name);
+  if (err.name === "ValidationError") err = handleValidationError(err);
+  next(err);
+});
+```
+
+To provide a custom message, we create an error message in our schema:
+
+```javascript
+const productSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: [true, "name cannot be blank"],
+  },
+});
+```
