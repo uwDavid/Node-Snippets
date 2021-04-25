@@ -56,7 +56,7 @@ app.get('/login', (req, res)=>{
 })
 app.get('/secret', (req, res) => {
     if(!req.session.user_id){
-        res.redirect('/login');
+        return res.redirect('/login'); // return is important
     }
     res.render('secret');
 })
